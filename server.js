@@ -8,7 +8,7 @@
 var fs = require('fs');
 var express = require('express');
 var app = express();
-app.use(cors())
+app.use(cors({ origin: '*' }));
 
 
 if (!process.env.DISABLE_XORIGIN) {

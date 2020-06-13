@@ -9,12 +9,10 @@ var fs = require('fs');
 var express = require('express');
 var cors = require('cors')
 var app = express();
-app.use(cors({ origin: '*' }));
-
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use(function (req, res, next) {
-    var allowedOrigins = ['https://narrow-plane.gomix.me', 'https://www.freecodecamp.com'];
+    var allowedOrigins = ['https://narrow-plane.gomix.me', 'https://www.freecodecamp.com', 'https://www.freecodecamp.org'];
     var origin = req.headers.origin || '*';
     if (!process.env.XORIG_RESTRICT || allowedOrigins.indexOf(origin) > -1) {
       console.log(origin);
@@ -24,7 +22,7 @@ if (!process.env.DISABLE_XORIGIN) {
     next();
   });
 }
-
+app.use(cors({ origin: '*' }));
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.route('/_api/package.json')
@@ -57,6 +55,6 @@ app.use(function (err, req, res, next) {
 })
 
 app.listen(process.env.PORT, function () {
-  console.log('Node.js listening ...');
+  console.log('Node.js listening ...', process.env.PORT);
 });
 

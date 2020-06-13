@@ -7,6 +7,7 @@
 
 var fs = require('fs');
 var express = require('express');
+var cors = require('cors')
 var app = express();
 app.use(cors({ origin: '*' }));
 
